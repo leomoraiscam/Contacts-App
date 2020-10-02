@@ -1,18 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  width: 80%;
-  max-width: 100%;
-  height: 80px;
-
-  margin: 0 auto;
-  padding: 12px;
-
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-
-  div{
+export const InputContainer = styled.div`
     width: 350px;
 
     input{
@@ -33,5 +21,5 @@ export const Container = styled.div`
       right: 65%;
       transform: translateY(-50%);
     }
-  }
+
 `;

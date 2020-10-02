@@ -1,15 +1,13 @@
 import React from 'react';
 import { FiSearch } from 'react-icons/fi';
-import { Container } from './styled';
+import { InputContainer } from './styles';
 
 function Filtros() {
   return (
-    <Container>
-      <div>
-        <input placeholder="Pesquisar"/>
-        <FiSearch />
-      </div>
-    </Container>
+    <InputContainer>
+      <input placeholder="Pesquisar"/>
+      {/* <FiSearch /> */}
+    </InputContainer>
   )
 }
 

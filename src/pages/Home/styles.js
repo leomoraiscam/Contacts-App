@@ -10,7 +10,7 @@ export const Section = styled.section`
   width: 80%;
   margin: 0 auto;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 
   div {
     display: flex;
@@ -18,8 +18,8 @@ export const Section = styled.section`
     button {
       width: 130px;
       height: 100%;
-      background: #Da5525;
-      color: #FFF;
+      background: #Dadada;
+      color: rgba(0,0,0,.8);
       border: 0;
       border-radius: 8px;
       display: flex;
@@ -31,13 +31,35 @@ export const Section = styled.section`
         opacity: 0.7;
       }
     }
+  }
+`;
 
-    button:first-child{
-      margin: 0;
-    }
+export const Main = styled.main`
+  width: 80%;
+  margin: 0 auto;
 
-    & > button{
-      margin-left: 10px;
-    }
+  table {
+    width: 100%;
+    margin: 25px 0;
+    font-size: 16px;
+    border-collapse: collapse;
+
+      th, td {
+        padding: 12px 15px;
+      }
+
+      thead {
+        tr {
+          text-align: left;
+        }
+      }
+
+      tbody {
+        tr {
+          height: 65px;
+          border-radius: 8px;
+          box-shadow: 5px 2px 10px rgba(0,0,0,.15);
+        }
+      }
   }
 `;

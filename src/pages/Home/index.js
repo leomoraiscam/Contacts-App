@@ -1,11 +1,27 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect ,useCallback } from 'react';
+import api from '../../services/api';
 import Menu from '../../components/Menu';
 import InputSearch from '../../components/InputSearch';
-import { Container, Section, Main } from './styles';
+import { Container, Section, Main, Avatar } from './styles';
 
 function Home() {
   const [filtro, setFiltro] = useState('Nome');
-  const data = [0, 1];
+  const [contacts, setContacts] = useState([]);
+
+  useEffect(()=>{
+    loadContacts();
+  },[]);
+
+  const loadContacts = useCallback(async()=> {
+    try {
+      const response = await api.get('contacts');
+      const { data } = response;
+
+      setContacts(data);
+    } catch (error) {
+      return error;
+    }
+  },[]);
 
   const handleChangeFiltro = useCallback((filter)=>{
     if(filter === filtro){
@@ -73,23 +89,30 @@ function Home() {
           <table>
             <thead>
               <tr>
-                <th>Header content 1</th>
-                <th>Header content 2</th>
-                <th>Header content 3</th>
-                <th>Header content 4</th>
-                <th>Header content 5</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>País</th>
+                <th>Admissão</th>
+                <th>Empresa</th>
+                <th>Departamento</th>
               </tr>
             </thead>
 
             <tbody>
-              {data.map((data)=>(
+              {contacts.map((contact)=> (
                <>
                  <tr>
-                  <td>Body content 1</td>
-                  <td>Body content 2</td>
-                  <td>Body content 3</td>
-                  <td>Body content 4</td>
-                  <td>Body content 5</td>
+                  <td>
+                    <Avatar src={contact.avatar} alt="Avatar user"/>
+                    <span>{contact.name}</span>
+                  </td>
+                  <td>{contact.phone}</td>
+                  <td>{contact.country}</td>
+                  <td>
+                    {new Date(contact.admissionDate).toLocaleDateString('pt')}
+                  </td>
+                  <td>{contact.company}</td>
+                  <td>{contact.department}</td>
                 </tr>
                 <br />
                </>

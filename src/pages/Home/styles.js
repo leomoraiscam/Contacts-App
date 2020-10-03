@@ -44,22 +44,39 @@ export const Main = styled.main`
     font-size: 16px;
     border-collapse: collapse;
 
-      th, td {
-        padding: 12px 15px;
+    th, td {
+      padding: 12px 15px;
+    }
+
+    thead {
+      tr {
+        text-align: left;
+      }
+    }
+
+    tbody {
+      tr {
+        height: 65px;
+        border-radius: 8px;
+        box-shadow: 5px 2px 10px rgba(0,0,0,.15);
       }
 
-      thead {
-        tr {
-          text-align: left;
-        }
-      }
+      td:first-child {
+        display: flex;
+        align-items: center;
 
-      tbody {
-        tr {
-          height: 65px;
-          border-radius: 8px;
-          box-shadow: 5px 2px 10px rgba(0,0,0,.15);
+        span{
+         margin-left: 10px;
+         color: blue;
         }
       }
+    }
   }
 `;
+
+export const Avatar = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  border: 2px solid #000000;
+`

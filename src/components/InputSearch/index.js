@@ -2,10 +2,11 @@ import React from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { InputContainer } from './styles';
 
-function Filtros() {
+function Filtros({placeholder, ...rest}) {
+
   return (
     <InputContainer>
-      <input placeholder="Pesquisar"/>
+      <input placeholder={placeholder} {...rest}/>
       {/* <FiSearch /> */}
     </InputContainer>
   )

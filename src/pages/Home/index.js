@@ -7,6 +7,7 @@ import { Container, Section, Main, Avatar } from './styles';
 function Home() {
   const [filtro, setFiltro] = useState('Nome');
   const [contacts, setContacts] = useState([]);
+  const [filteredContacts, setFilteredContacts] = useState([]);
 
   useEffect(()=>{
     loadContacts();
@@ -18,6 +19,7 @@ function Home() {
       const { data } = response;
 
       setContacts(data);
+      setFilteredContacts(data);
     } catch (error) {
       return error;
     }
@@ -44,12 +46,32 @@ function Home() {
     return { margin: '2px' };
   }, [filtro]);
 
+  const filterContacts = useCallback((inputValue)=>{
+    if (inputValue.target.value === "") {
+      setFilteredContacts(contacts);
+      return;
+    }
+
+    const contactsValue = contacts.filter((contact)=> (
+      contact.name
+        .toLowerCase()
+        .indexOf(inputValue.target.value) >- 1
+    ));
+
+    console.log(contactsValue);
+
+    setFilteredContacts(contactsValue);
+  },[filteredContacts]);
+
   return (
     <>
       <Menu />
       <Container>
         <Section>
-          <InputSearch />
+          <InputSearch
+            placeholder="Pesquisar"
+            onChange={(e)=>filterContacts(e)}
+          />
 
           <div>
             <button
@@ -99,7 +121,7 @@ function Home() {
             </thead>
 
             <tbody>
-              {contacts.map((contact)=> (
+              {filteredContacts.map((contact)=> (
                <>
                  <tr>
                   <td>

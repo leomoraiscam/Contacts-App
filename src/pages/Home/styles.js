@@ -15,20 +15,28 @@ export const Section = styled.section`
   div {
     display: flex;
 
-    label {
+    button {
       width: 130px;
       height: 100%;
       background: #Da5525;
+      color: #FFF;
+      border: 0;
+      border-radius: 8px;
       display: flex;
       justify-content: center;
       align-items: center;
+      cursor: pointer;
+
+      &:hover{
+        opacity: 0.7;
+      }
     }
 
-    label:first-child{
+    button:first-child{
       margin: 0;
     }
 
-    & > label{
+    & > button{
       margin-left: 10px;
     }
   }

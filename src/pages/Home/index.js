@@ -5,9 +5,10 @@ import InputSearch from '../../components/InputSearch';
 import { Container, Section, Main, Avatar } from './styles';
 
 function Home() {
-  const [filtro, setFiltro] = useState('Nome');
+  const [filtro, setFiltro] = useState('name');
   const [contacts, setContacts] = useState([]);
   const [filteredContacts, setFilteredContacts] = useState([]);
+
 
   useEffect(()=>{
     loadContacts();
@@ -25,11 +26,17 @@ function Home() {
     }
   },[]);
 
-  const handleChangeFiltro = useCallback((filter)=>{
-    if(filter === filtro){
-      setFiltro('Nome');
-    }else{
-      setFiltro(filter);
+  const handleChangeFiltro = useCallback((filtered)=>{
+
+    if(filtered === filtro) {
+      setFiltro('name');
+    }else {
+      setFiltro(filtered);
+      contacts.sort((a,b)=>{
+        if(a[filtered] < b[filtered]) return -1;
+        if(a[filtered] > b[filtered]) return 1;
+        return 0;
+      });
     }
   },[filtro]);
 
@@ -61,7 +68,7 @@ function Home() {
     console.log(contactsValue);
 
     setFilteredContacts(contactsValue);
-  },[filteredContacts]);
+  },[contacts]);
 
   return (
     <>
@@ -75,14 +82,14 @@ function Home() {
 
           <div>
             <button
-              style={styleBotaoSelecionado('Nome')}
-              onClick={()=>handleChangeFiltro('Nome')}
+              style={styleBotaoSelecionado('name')}
+              onClick={()=>handleChangeFiltro('name')}
             >
               Nome
             </button>
             <button
-              style={styleBotaoSelecionado('Pais')}
-              onClick={()=>handleChangeFiltro('Pais')}
+              style={styleBotaoSelecionado('country')}
+              onClick={()=>handleChangeFiltro('country')}
             >
               País
             </button>
